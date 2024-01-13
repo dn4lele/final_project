@@ -46,8 +46,12 @@ namespace Final_Work
 
         private void startbtn_Click(object sender, EventArgs e)
         {
-            Form a = new second_screen();
+            Form a = new thelevels(2);
             a.ShowDialog();
+            /*
+            Form a = new second_screen(); // change that to Form a = new second_screen();
+            a.ShowDialog();
+            */
         }
 
         private void optionsbtn_Click(object sender, EventArgs e)
