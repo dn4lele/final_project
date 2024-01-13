@@ -183,26 +183,7 @@ namespace Final_Work
 
         }
 
-        public class State
-        {
-            public int action;
-            public Point boxWantPosition;
-            public Point agentWantPosition;
-        }
-
-        public class Target
-        {
-            public int barrier;
-            public Point position;
-        }
-
-        public class Box
-        {
-            public Point position;
-            public List<Point> explored = new List<Point>();
-            public int barrier;
-        }
-
+      
 
         public static bool boxMove(PictureBox[,] arr , bool plan ) {
 
@@ -223,7 +204,6 @@ namespace Final_Work
                     }
                     foreach (var box in boxes)
                     {
-                        List<State> possibleStates = new List<State>();
 
 
                     }
