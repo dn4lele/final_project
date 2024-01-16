@@ -889,19 +889,19 @@ namespace Final_Work
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            List<Tuple<Point, int>> targers = ai_algorithem.EvaluateTarget(arr);
+            Agent man = new Agent(arr);
 
-            List<List<Tuple<Point, int>>> allboxescombination = new List<List<Tuple<Point, int>>>();
-            for (int i = 0; i < targers.Count; i++)
-            {
-                List<Tuple<Point, int>> boxes = ai_algorithem.EvaluateBox(targers[0], arr);
-                allboxescombination.Add(boxes);
-            }
-            /*
-            var path = ai_algorithem.findpathBFS(new Point(6,5), new Point(2, 1), arr);
-            patha.Text = string.Join(" -> ", path.Select(p => $"({p.X}, {p.Y})"));
-            */
+            Target t = new Target(0, new Point(4, 1));
+
+
+            Dictionary<Point, Box> boxes = new Dictionary<Point, Box>();
+            Point point1 = new Point(2, 3);
+            Box box1 = new Box(0, new Point(2,3), new HashSet<Point>()) ;
+            boxes.Add(point1, box1);
+
+
+            man.evaluateBox(t, boxes,arr);
+
         }
 
     }

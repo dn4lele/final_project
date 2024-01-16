@@ -11,13 +11,23 @@ using static System.Windows.Forms.AxHost;
 
 namespace Final_Work
 {
-    
-   
 
+    /*
+    public class Target
+    {
+        public int barrier { get; set; }
+        public Point position { get; set; }
+
+        public Target(int bar, Point pos)
+        {
+            barrier = bar;
+            position = pos;
+        }
+    };
+    */
     internal class ai_algorithem
     {
-
-        class Node {
+    class Node {
             public int x;
             public int y;
             public Node parent=null;
@@ -27,7 +37,10 @@ namespace Final_Work
                 this.x = x; this.y = y;
             }
         
-        }
+    }
+
+
+
 
         private static Node[,] _nodeMap;
         private static readonly int[] row = { -1, 0, 0, 1 };
@@ -39,7 +52,7 @@ namespace Final_Work
             for (int i = 0; i < arr.GetLength(1); i++) {
                 for (int j = 0; j < arr.GetLength(0); j++) {
                     _nodeMap[i, j] = new Node(i, j);
-                    if (arr[i,j].Tag.ToString() == "0")
+                    if (arr[i,j].Tag.ToString() == "0") // if it wall it visited
                         _nodeMap[i,j].visited = true;
                 }
             }
@@ -91,7 +104,7 @@ namespace Final_Work
             Node curr = _nodeMap[goal.X, goal.Y];
 
             while (curr!=null && !(curr.x == start.X && curr.y == start.Y)) {
-                //arr[curr.x, curr.y].Image = Image.FromFile("./PNG/Ground_Grass.png");
+                arr[curr.x, curr.y].Image = Image.FromFile("./PNG/Ground_Grass.png");
                 stack.Push(new Point(curr.x, curr.y));
                 curr = curr.parent;
             }
@@ -101,10 +114,10 @@ namespace Final_Work
         }
 
 
-        public static List<Tuple<Point, int>> EvaluateTarget(PictureBox[,] arr)
+        public static List<Target> EvaluateTarget(PictureBox[,] arr)
         {
 
-            List<Tuple<Point, int>> targets = new List<Tuple<Point, int>>();
+            List<Target> targets = new List<Target>();
 
             for (int i = 0; i < arr.GetLength(0); i++)
             {
@@ -112,15 +125,15 @@ namespace Final_Work
                 {
                     if (arr[i, j].Tag.ToString() == "3")
                     {
-                        targets.Add(new Tuple<Point, int>(new Point(i, j), 0));
+                        targets.Add(new Target(0,new Point(i, j)));
                     }
                 }
             }
 
             for (int i = 0; i < targets.Count; i++)
             {
-                int barrierCount = CalculateBarrierCount(targets[i].Item1, arr);
-                targets[i] = new Tuple<Point, int>(targets[i].Item1, barrierCount);
+                int barrierCount = CalculateBarrierCount(targets[i].position, arr);
+                targets[i] = new Target(barrierCount, targets[i].position);
             }
 
             return targets;
@@ -150,7 +163,7 @@ namespace Final_Work
         }
 
 
-        public static List<Tuple<Point, int>> EvaluateBox(Tuple<Point, int> target, PictureBox[,] arr)
+        public static List<Tuple<Point, int>> EvaluateBox(Target target, PictureBox[,] arr)
         {
             List<Tuple<Point, int>> boxes = new List<Tuple<Point, int>>();
 
@@ -169,7 +182,7 @@ namespace Final_Work
             for (int i = 0; i < boxes.Count; i++)
             {
                 hitbox = 0;
-                var path = ai_algorithem.findpathBFS(boxes[i].Item1, target.Item1, arr);
+                var path = ai_algorithem.findpathBFS(boxes[i].Item1, target.position, arr);
                 foreach(Point p in path) {
                     if (arr[p.X , p.Y].Tag.ToString() == "2") { 
                         hitbox++; 
@@ -188,11 +201,11 @@ namespace Final_Work
         public static bool boxMove(PictureBox[,] arr , bool plan ) {
 
             List<Tuple<Point, int>> boxes = null;
-            List<Tuple<Point, int>> targets =null;
+            List<Target> targets =null;
 
             if (plan) {
                 targets = EvaluateTarget(arr);
-                targets = targets.OrderBy(t => t.Item2).ToList();
+                targets = targets.OrderBy(t => t.barrier).ToList();
                 //clear something
                 //clear something 
 
