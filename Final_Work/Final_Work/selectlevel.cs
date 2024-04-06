@@ -82,15 +82,68 @@ namespace Final_Work
             right_arrow.Location = new Point(this.Width -150, commonY+100);
             leftarrow.Location = new Point( 0, commonY + 100);
 
-
-            optionbtn.Location = new Point((this.Width - optionbtn.Width) - 10, 10);
+            closeallbtn.Location = new Point((this.Width - closeallbtn.Width) - 10, 10);
+            optionbtn.Location = new Point((this.Width - optionbtn.Width)- closeallbtn.Width - 10, 10);
         }
 
 
         //all buttons to start the level
         private void enterlvl_click(object sender, EventArgs e , int num) {
-            Form a = new thelevels(num);
-            a.ShowDialog();
+            //check if there is save
+            try
+            {
+                FileStream f = new FileStream("lvl" + num + "save.cool", FileMode.Open);
+                BinaryReader r = new BinaryReader(f);
+                
+
+                DialogResult result = MessageBox.Show("We found you have save on this map\ndo you want to continue the progress?\ncancle will delete the progress", "Found Progress", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    int maxx = r.ReadInt32();
+                    int maxy = r.ReadInt32();
+
+                    for (int i = 0; i < maxx; i++)
+                    {
+                        for (int j = 0; j < maxy; j++)
+                        {
+                             Int32.Parse(r.ReadString());
+                        }
+                    }   
+                    bool stepondot= r.ReadBoolean();
+                    bool boxstepondot = r.ReadBoolean();
+                    int steps = r.ReadInt32();
+                    int elapsedSeconds = r.ReadInt32();
+
+                    r.Close();
+                    f.Close();
+
+                    Form continueSavedLevel = new thelevels(num,maxx,maxy, stepondot, boxstepondot,steps,elapsedSeconds);
+                    continueSavedLevel.Show();
+                    return;
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    r.Close();
+                    f.Close();
+                    File.Delete("lvl" + num + "save.cool");
+                    //no save
+                }
+                else
+                {
+                    r.Close();
+                    f.Close();
+                }           
+               
+
+            }
+            catch
+            {
+                //no save
+            }
+
+
+            Form thelevel = new thelevels(num);
+            thelevel.Show();
 
         }
 
@@ -133,7 +186,9 @@ namespace Final_Work
         //return 
         private void returnbtn_Click(object sender, EventArgs e)
         {
-            Close();
+            Form back = new second_screen();
+            back.Show();
+            this.Close();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -196,6 +251,11 @@ namespace Final_Work
 
         }
 
-     
+        private void closeallbtn_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                Application.Exit();
+        }
     }
 }

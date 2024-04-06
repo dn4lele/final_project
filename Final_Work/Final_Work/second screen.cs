@@ -65,19 +65,24 @@ namespace Final_Work
             title.Location = new Point((this.Width - title.Width) / 2 , 100);
             returnbtn.Location = new Point(10, 10);
 
-            optionbtn.Location = new Point((this.Width - optionbtn.Width) - 10, 10);
+
+            closeallbtn.Location = new Point((this.Width - closeallbtn.Width) - 10, 10);
+            optionbtn.Location = new Point((this.Width - optionbtn.Width)  - closeallbtn.Width - 10, 10);
 
         }
 
         private void returnbtn_Click(object sender, EventArgs e)
         {
-            Close();
+            Form return_to_back = new Form1();
+            return_to_back.Show();
+            this.Hide();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Form a = new selectlevel();
-            a.ShowDialog();
+            Form levels = new selectlevel();
+            levels.Show();
+            this.Hide();
         }
 
         private void optionbtn_Click(object sender, EventArgs e)
@@ -88,17 +93,24 @@ namespace Final_Work
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            Form a = new buildform();
-            a.ShowDialog();
+            Form Build_form = new buildform();
+            Build_form.Show();
+            this.Hide();
         }
 
         private void howtoplaybtn_Click(object sender, EventArgs e)
         {
             //show how to play on the first level
             Form instraction = new instructions();
-            instraction.ShowDialog();
+            instraction.Show();
+            this.Hide();
         }
 
-   
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                Application.Exit();
+        }
     }
 }

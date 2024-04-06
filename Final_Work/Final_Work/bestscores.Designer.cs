@@ -131,6 +131,7 @@
             this.Controls.Add(this.savebtn);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "bestscores";
             this.Text = "bestscores";
             this.Load += new System.EventHandler(this.bestscores_Load);

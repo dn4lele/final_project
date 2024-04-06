@@ -71,7 +71,8 @@ namespace Final_Work
             LoadImages();
             arr = builderoflevels.Lvl1(this, 7, 7, arr, imgarr); // the first map is 7 on 7
             returnbtn.Location = new Point(10, 10);
-            optionbtn.Location = new Point((this.Width - optionbtn.Width) - 10, 10);
+            closeallbtn.Location = new Point((this.Width - closeallbtn.Width) - 10, 10);
+            optionbtn.Location = new Point((this.Width - optionbtn.Width)- closeallbtn.Width - 10, 10);
             infolbl.Location = new Point((this.Width+ infolbl.Width) / 2 - infolbl.Width, 10);
 
 
@@ -168,7 +169,9 @@ namespace Final_Work
 
         private void returnbtn_Click(object sender, EventArgs e)
         {
-            Close();
+            Form back = new second_screen();
+            back.Show();
+            this.Close();
         }
 
         private void forwordbutton_Click(object sender, EventArgs e)
@@ -203,6 +206,13 @@ namespace Final_Work
 
             // Default image (up) if no valid movement
             return null;
+        }
+
+        private void closeallbtn_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                Application.Exit();
         }
 
         private void movefunc(undoc currentposition , undoc forwordmove , bool backwords)

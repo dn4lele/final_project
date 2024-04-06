@@ -90,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agent.cs" />
-    <Compile Include="ai_algorithem.cs" />
     <Compile Include="bestscores.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -55,6 +55,7 @@
             this.score5btn = new System.Windows.Forms.Button();
             this.score4btn = new System.Windows.Forms.Button();
             this.leftarrow = new System.Windows.Forms.PictureBox();
+            this.closeallbtn = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.piclvl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.piclvl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.piclvl3)).BeginInit();
@@ -70,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.piclvl7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.piclvl8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftarrow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeallbtn)).BeginInit();
             this.SuspendLayout();
             // 
             // piclvl1
@@ -151,7 +153,7 @@
             // 
             this.optionbtn.BackColor = System.Drawing.Color.Transparent;
             this.optionbtn.Image = ((System.Drawing.Image)(resources.GetObject("optionbtn.Image")));
-            this.optionbtn.Location = new System.Drawing.Point(1283, 12);
+            this.optionbtn.Location = new System.Drawing.Point(1247, 12);
             this.optionbtn.Name = "optionbtn";
             this.optionbtn.Size = new System.Drawing.Size(60, 60);
             this.optionbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -350,12 +352,25 @@
             this.leftarrow.TabStop = false;
             this.leftarrow.Click += new System.EventHandler(this.leftarrow_Click);
             // 
+            // closeallbtn
+            // 
+            this.closeallbtn.BackColor = System.Drawing.Color.Transparent;
+            this.closeallbtn.Image = ((System.Drawing.Image)(resources.GetObject("closeallbtn.Image")));
+            this.closeallbtn.Location = new System.Drawing.Point(1320, 12);
+            this.closeallbtn.Name = "closeallbtn";
+            this.closeallbtn.Size = new System.Drawing.Size(60, 60);
+            this.closeallbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.closeallbtn.TabIndex = 40;
+            this.closeallbtn.TabStop = false;
+            this.closeallbtn.Click += new System.EventHandler(this.closeallbtn_Click);
+            // 
             // selectlevel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1392, 678);
+            this.Controls.Add(this.closeallbtn);
             this.Controls.Add(this.leftarrow);
             this.Controls.Add(this.score4btn);
             this.Controls.Add(this.score5btn);
@@ -383,6 +398,7 @@
             this.Controls.Add(this.piclvl2);
             this.Controls.Add(this.piclvl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "selectlevel";
             this.Text = "selectlevel";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -402,6 +418,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.piclvl7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.piclvl8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftarrow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeallbtn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -434,5 +451,6 @@
         private System.Windows.Forms.Button score5btn;
         private System.Windows.Forms.Button score4btn;
         private System.Windows.Forms.PictureBox leftarrow;
+        private System.Windows.Forms.PictureBox closeallbtn;
     }
 }

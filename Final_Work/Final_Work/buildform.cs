@@ -74,7 +74,8 @@ namespace Final_Work
             newbtn.Location = new Point(20, (this.Height - savebtn.Height) - 20);
 
             returnbtn.Location = new Point(10, 10);
-            optionbtn.Location = new Point((this.Width - optionbtn.Width) - 10, 10);
+            closeallbtn.Location = new Point((this.Width - closeallbtn.Width) - 10, 10);
+            optionbtn.Location = new Point((this.Width - optionbtn.Width) - closeallbtn.Width - 10, 10);
 
             label1.Location = new Point((this.Width - label1.Width) / 2-200, (this.Height - label1.Height) - 30);
             sizextxt.Location= new Point((this.Width - sizextxt.Width) / 2 - 200, (this.Height - sizextxt.Height));
@@ -312,7 +313,9 @@ namespace Final_Work
         //return option and new
         private void returnbtn_Click(object sender, EventArgs e)
         {
-            Close();
+            Form back = new second_screen();
+            back.Show();
+            this.Close();
         }
 
         private void optionbtn_Click(object sender, EventArgs e)
@@ -334,6 +337,13 @@ namespace Final_Work
             maxy = Int32.Parse(sizeytxt.Text.ToString());
             byd();
 
+        }
+
+        private void closeallbtn_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                Application.Exit();
         }
 
         private void newbtn_Click(object sender, EventArgs e)

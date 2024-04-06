@@ -40,19 +40,22 @@
             this.optionbtn = new System.Windows.Forms.PictureBox();
             this.undobtn = new System.Windows.Forms.PictureBox();
             this.undolbl = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.autosolve = new System.Windows.Forms.PictureBox();
             this.patha = new System.Windows.Forms.Label();
+            this.closeallbtn = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.returnbtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.againbtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.optionbtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.undobtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autosolve)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeallbtn)).BeginInit();
             this.SuspendLayout();
             // 
             // returnbtn
             // 
             this.returnbtn.BackColor = System.Drawing.Color.Transparent;
             this.returnbtn.Image = ((System.Drawing.Image)(resources.GetObject("returnbtn.Image")));
-            this.returnbtn.Location = new System.Drawing.Point(101, 43);
+            this.returnbtn.Location = new System.Drawing.Point(29, 22);
             this.returnbtn.Name = "returnbtn";
             this.returnbtn.Size = new System.Drawing.Size(100, 50);
             this.returnbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -70,7 +73,7 @@
             this.againbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.againbtn.TabIndex = 2;
             this.againbtn.TabStop = false;
-            this.againbtn.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.againbtn.Click += new System.EventHandler(this.againbtn_click);
             // 
             // stepslbl
             // 
@@ -124,7 +127,7 @@
             // 
             this.optionbtn.BackColor = System.Drawing.Color.Transparent;
             this.optionbtn.Image = ((System.Drawing.Image)(resources.GetObject("optionbtn.Image")));
-            this.optionbtn.Location = new System.Drawing.Point(981, 12);
+            this.optionbtn.Location = new System.Drawing.Point(918, 12);
             this.optionbtn.Name = "optionbtn";
             this.optionbtn.Size = new System.Drawing.Size(60, 60);
             this.optionbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -157,24 +160,39 @@
             this.undolbl.Text = "undo";
             this.undolbl.Visible = false;
             // 
-            // button1
+            // autosolve
             // 
-            this.button1.Location = new System.Drawing.Point(40, 516);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 100);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "Ai solver";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.autosolve.BackColor = System.Drawing.Color.Transparent;
+            this.autosolve.Image = ((System.Drawing.Image)(resources.GetObject("autosolve.Image")));
+            this.autosolve.Location = new System.Drawing.Point(94, 127);
+            this.autosolve.Name = "autosolve";
+            this.autosolve.Size = new System.Drawing.Size(129, 87);
+            this.autosolve.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.autosolve.TabIndex = 26;
+            this.autosolve.TabStop = false;
+            this.autosolve.Click += new System.EventHandler(this.autosolve_Click);
             // 
             // patha
             // 
             this.patha.AutoSize = true;
-            this.patha.Location = new System.Drawing.Point(329, 177);
+            this.patha.Location = new System.Drawing.Point(251, 127);
             this.patha.Name = "patha";
-            this.patha.Size = new System.Drawing.Size(54, 16);
-            this.patha.TabIndex = 25;
-            this.patha.Text = "the path";
+            this.patha.Size = new System.Drawing.Size(44, 16);
+            this.patha.TabIndex = 27;
+            this.patha.Text = "label1";
+            this.patha.Visible = false;
+            // 
+            // closeallbtn
+            // 
+            this.closeallbtn.BackColor = System.Drawing.Color.Transparent;
+            this.closeallbtn.Image = ((System.Drawing.Image)(resources.GetObject("closeallbtn.Image")));
+            this.closeallbtn.Location = new System.Drawing.Point(984, 12);
+            this.closeallbtn.Name = "closeallbtn";
+            this.closeallbtn.Size = new System.Drawing.Size(60, 60);
+            this.closeallbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.closeallbtn.TabIndex = 28;
+            this.closeallbtn.TabStop = false;
+            this.closeallbtn.Click += new System.EventHandler(this.closeallbtn_Click);
             // 
             // thelevels
             // 
@@ -182,8 +200,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1053, 645);
+            this.Controls.Add(this.closeallbtn);
             this.Controls.Add(this.patha);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.autosolve);
             this.Controls.Add(this.undolbl);
             this.Controls.Add(this.undobtn);
             this.Controls.Add(this.optionbtn);
@@ -194,6 +213,7 @@
             this.Controls.Add(this.againbtn);
             this.Controls.Add(this.returnbtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "thelevels";
             this.Text = "Firstlevel";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -203,6 +223,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.againbtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.optionbtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.undobtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autosolve)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeallbtn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,7 +241,8 @@
         private System.Windows.Forms.PictureBox optionbtn;
         private System.Windows.Forms.PictureBox undobtn;
         private System.Windows.Forms.Label undolbl;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox autosolve;
         private System.Windows.Forms.Label patha;
+        private System.Windows.Forms.PictureBox closeallbtn;
     }
 }

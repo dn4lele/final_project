@@ -28,6 +28,128 @@ namespace Final_Work
 
         //tag 10 = was box place
 
+
+        public static PictureBox[,] Lvl0(Form form, int maxx, int maxy, PictureBox[,] arr, Image[] imgarr)
+        {
+            try
+            {
+                FileStream f = new FileStream("levelsaved.dangame", FileMode.Open);
+                BinaryReader sr = new BinaryReader(f);
+                int choice;
+                maxx = sr.ReadInt32();
+                maxy = sr.ReadInt32();
+
+
+                int xx = (form.ClientSize.Width - (maxx * 65)) / 2;
+                int yy = (form.ClientSize.Height - (maxy * 65)) / 2;
+
+                arr = new PictureBox[maxx, maxy];
+                for (int i = 0; i < maxx; i++)
+                {
+                    for (int j = 0; j < maxy; j++)
+                    {
+                        arr[i, j] = new PictureBox();
+                        arr[i, j].Size = new Size(65, 65);
+                        arr[i, j].SizeMode = PictureBoxSizeMode.CenterImage;
+                        arr[i, j].Location = new Point(xx, yy);
+
+                        //read the file
+                        choice = Int32.Parse(sr.ReadString());
+                        arr[i, j].Tag = choice.ToString();
+                        arr[i, j].BackgroundImage = imgarr[choice];
+
+
+
+
+                        if (choice >= 2)
+                        {
+                            arr[i, j].BackgroundImage = imgarr[1];
+                            arr[i, j].Image = imgarr[choice];
+                        }
+
+                        arr[i, j].BackColor = Color.Transparent;
+                        form.Controls.Add(arr[i, j]);
+
+                        xx += 65;
+                    }
+                    yy += 65;
+                    xx = (form.ClientSize.Width - (maxx * 65)) / 2;
+                }
+
+                sr.Close();
+                f.Close();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+            return arr;
+
+
+        }
+
+        public static PictureBox[,] Midgamesaved(Form form, int levelnum ,int maxx, int maxy, PictureBox[,] arr, Image[] imgarr)
+        {
+            try
+            {
+                FileStream f = new FileStream("lvl" + levelnum+ "save.cool", FileMode.Open);
+                BinaryReader sr = new BinaryReader(f);
+                int choice;
+                maxx = sr.ReadInt32();
+                maxy = sr.ReadInt32();
+
+
+                int xx = (form.ClientSize.Width - (maxx * 65)) / 2;
+                int yy = (form.ClientSize.Height - (maxy * 65)) / 2;
+
+                arr = new PictureBox[maxx, maxy];
+                for (int i = 0; i < maxx; i++)
+                {
+                    for (int j = 0; j < maxy; j++)
+                    {
+                        arr[i, j] = new PictureBox();
+                        arr[i, j].Size = new Size(65, 65);
+                        arr[i, j].SizeMode = PictureBoxSizeMode.CenterImage;
+                        arr[i, j].Location = new Point(xx, yy);
+
+                        //read the file
+                        choice = Int32.Parse(sr.ReadString());
+                        arr[i, j].Tag = choice.ToString();
+                        arr[i, j].BackgroundImage = imgarr[choice];
+
+
+
+
+                        if (choice >= 2)
+                        {
+                            arr[i, j].BackgroundImage = imgarr[1];
+                            arr[i, j].Image = imgarr[choice];
+                        }
+
+                        arr[i, j].BackColor = Color.Transparent;
+                        form.Controls.Add(arr[i, j]);
+
+                        xx += 65;
+                    }
+                    yy += 65;
+                    xx = (form.ClientSize.Width - (maxx * 65)) / 2;
+                }
+
+                sr.Close();
+                f.Close();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+            return arr;
+
+
+        }
+
+
         public static PictureBox[,] Lvl1(Form form, int maxx, int maxy, PictureBox[,] arr, Image[] imgarr) {
 
 
@@ -370,65 +492,6 @@ namespace Final_Work
         }
 
 
-        public static PictureBox[,] Lvl0(Form form, int maxx, int maxy, PictureBox[,] arr, Image[] imgarr)
-        {
-            try
-            {
-                FileStream f = new FileStream("levelsaved.dangame", FileMode.Open);
-                BinaryReader sr = new BinaryReader(f);
-                int choice;
-                maxx = sr.ReadInt32();
-                maxy = sr.ReadInt32();
-
-            
-                int xx = (form.ClientSize.Width - (maxx * 65)) / 2;
-                int yy = (form.ClientSize.Height - (maxy * 65)) / 2;
-
-                arr = new PictureBox[maxx, maxy];
-                for (int i = 0; i < maxx; i++)
-                {
-                    for (int j = 0; j < maxy; j++)
-                    {
-                        arr[i, j] = new PictureBox();
-                        arr[i, j].Size = new Size(65, 65);
-                        arr[i, j].SizeMode = PictureBoxSizeMode.CenterImage;
-                        arr[i, j].Location = new Point(xx, yy);
-
-                        //read the file
-                        choice= Int32.Parse(sr.ReadString());
-                        arr[i, j].Tag = choice.ToString();
-                        arr[i, j].BackgroundImage = imgarr[choice];
-
-                        
-
-
-                        if (choice >= 2) {
-                            arr[i, j].BackgroundImage = imgarr[1];
-                            arr[i, j].Image = imgarr[choice];
-                        }
-
-                        arr[i, j].BackColor = Color.Transparent;
-                        form.Controls.Add(arr[i, j]);
-
-                        xx += 65;
-                    }
-                    yy += 65;
-                    xx = (form.ClientSize.Width - (maxx * 65)) / 2;
-                }
-
-                sr.Close();
-                f.Close();
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }
-
-            return arr;
-
-
-        }
-
 
         public static PictureBox[,] Lvl4(Form form, int maxx, int maxy, PictureBox[,] arr, Image[] imgarr)
         {
@@ -673,9 +736,7 @@ namespace Final_Work
             arr[3,4].Tag = "0";
             arr[3, 4].BackgroundImage = imgarr[0];
 
-            //box
-            arr[5, 2].Tag = "2";
-            arr[5, 2].Image = imgarr[2];
+         
 
 
             //targets
@@ -683,12 +744,9 @@ namespace Final_Work
             arr[3, 3].Image = imgarr[3];
 
 
-            //box on target 
-            arr[3, 2].Tag = "4";
-            arr[3, 2].Image = imgarr[4];
-
-            arr[2,4].Tag = "4";
-            arr[2,4].Image = imgarr[4];
+           
+            arr[2,4].Tag = "2";
+            arr[2,4].Image = imgarr[2];
 
 
             return arr;

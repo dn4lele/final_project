@@ -39,6 +39,7 @@
             this.returnbtn = new System.Windows.Forms.PictureBox();
             this.optionbtn = new System.Windows.Forms.PictureBox();
             this.howtoplaybtn = new System.Windows.Forms.PictureBox();
+            this.closeallbtn = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -46,6 +47,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.returnbtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.optionbtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.howtoplaybtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeallbtn)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -150,7 +152,7 @@
             // 
             this.optionbtn.BackColor = System.Drawing.Color.Transparent;
             this.optionbtn.Image = ((System.Drawing.Image)(resources.GetObject("optionbtn.Image")));
-            this.optionbtn.Location = new System.Drawing.Point(1011, 12);
+            this.optionbtn.Location = new System.Drawing.Point(944, 2);
             this.optionbtn.Name = "optionbtn";
             this.optionbtn.Size = new System.Drawing.Size(60, 60);
             this.optionbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -169,6 +171,18 @@
             this.howtoplaybtn.TabStop = false;
             this.howtoplaybtn.Click += new System.EventHandler(this.howtoplaybtn_Click);
             // 
+            // closeallbtn
+            // 
+            this.closeallbtn.BackColor = System.Drawing.Color.Transparent;
+            this.closeallbtn.Image = ((System.Drawing.Image)(resources.GetObject("closeallbtn.Image")));
+            this.closeallbtn.Location = new System.Drawing.Point(1010, 2);
+            this.closeallbtn.Name = "closeallbtn";
+            this.closeallbtn.Size = new System.Drawing.Size(60, 60);
+            this.closeallbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.closeallbtn.TabIndex = 24;
+            this.closeallbtn.TabStop = false;
+            this.closeallbtn.Click += new System.EventHandler(this.pictureBox5_Click);
+            // 
             // second_screen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -176,6 +190,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1073, 711);
             this.ControlBox = false;
+            this.Controls.Add(this.closeallbtn);
             this.Controls.Add(this.howtoplaybtn);
             this.Controls.Add(this.optionbtn);
             this.Controls.Add(this.returnbtn);
@@ -187,6 +202,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "second_screen";
             this.Text = "second_screen";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -198,6 +214,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.returnbtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.optionbtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.howtoplaybtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeallbtn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,5 +232,6 @@
         private System.Windows.Forms.PictureBox returnbtn;
         private System.Windows.Forms.PictureBox optionbtn;
         private System.Windows.Forms.PictureBox howtoplaybtn;
+        private System.Windows.Forms.PictureBox closeallbtn;
     }
 }

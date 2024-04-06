@@ -10,6 +10,7 @@ using System.Net.Configuration;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMPLib;
@@ -25,7 +26,7 @@ namespace Final_Work
         
 
         //diffrent each level
-        int whatlevel = 0;
+        String whatlevel = "";
         PictureBox[,] arr;
         int maxx = 9;
         int maxy = 9;
@@ -40,13 +41,29 @@ namespace Final_Work
         {
             InitializeComponent();
 
-            whatlevel = level;
+            whatlevel = level.ToString();
 
 
         }
 
+        public thelevels(int level, int maxx,int  maxy,bool stepondot,bool boxstepondot,int steps,int secpased)
+        {
+            InitializeComponent();
+            whatlevel = level.ToString()+".saved";
+            this.maxx = maxx;
+            this.maxy = maxy;
+            stepOnDot = stepondot;
+            boxstepOnDot = boxstepondot;
+            stepcounter = steps;
+            elapsedSeconds = secpased;
+
+        }
+
+
         int stepcounter = 0;
         int elapsedSeconds = 0;
+        bool FirstMoveOfTheGame = false;
+
         //tag 0  = wall
         //tag 1 = floor
         //tag 2 = box 
@@ -124,99 +141,101 @@ namespace Final_Work
         {
             LoadImages();
 
-
-
-
-            //check what level
-            switch (whatlevel)
+            try
             {
-                case 1:
-                    //helpbuilder(7, 7);
-                    maxx = 7;
-                    maxy = 7;
-                    arr = builderoflevels.Lvl1(this, maxx, maxy, arr, imgarr);
-                    break;
+                switch (Int32.Parse(whatlevel))
+                {
+                    case 1:
+                        //helpbuilder(7, 7);
+                        maxx = 7;
+                        maxy = 7;
+                        arr = builderoflevels.Lvl1(this, maxx, maxy, arr, imgarr);
+                        break;
 
-                case 2:
-                    maxx = 9;
-                    maxy = 9;
-                    arr = builderoflevels.Lvl2(this, maxx, maxy, arr, imgarr);
-                    break;
+                    case 2:
+                        maxx = 9;
+                        maxy = 9;
+                        arr = builderoflevels.Lvl2(this, maxx, maxy, arr, imgarr);
+                        break;
 
-                case 3:
-                    maxx = 9;
-                    maxy = 11;
-                    arr = builderoflevels.Lvl3(this, maxx, maxy, arr, imgarr);
-                    break;
+                    case 3:
+                        maxx = 9;
+                        maxy = 11;
+                        arr = builderoflevels.Lvl3(this, maxx, maxy, arr, imgarr);
+                        break;
 
-                case 4:
-                    maxx = 7;
-                    maxy = 7;
-                    arr = builderoflevels.Lvl4(this, maxx, maxy, arr, imgarr);
-                    break;
+                    case 4:
+                        maxx = 7;
+                        maxy = 7;
+                        arr = builderoflevels.Lvl4(this, maxx, maxy, arr, imgarr);
+                        break;
 
-                case 5:
-                    maxx = 8;
-                    maxy = 8;
-                    arr = builderoflevels.Lvl5(this, maxx, maxy, arr, imgarr);
-                    break;
+                    case 5:
+                        maxx = 8;
+                        maxy = 8;
+                        arr = builderoflevels.Lvl5(this, maxx, maxy, arr, imgarr);
+                        break;
 
-                case 6:
-                    maxx = 9;
-                    maxy = 8;
-                    arr = builderoflevels.Lvl6(this, maxx, maxy, arr, imgarr);
-                    break;
+                    case 6:
+                        maxx = 9;
+                        maxy = 8;
+                        arr = builderoflevels.Lvl6(this, maxx, maxy, arr, imgarr);
+                        break;
 
                     //change
-                case 7:
-                    maxx = 7;
-                    maxy = 8;
-                    arr = builderoflevels.Lvl7(this, maxx, maxy, arr, imgarr);
-                    break;
+                    case 7:
+                        maxx = 7;
+                        maxy = 8;
+                        arr = builderoflevels.Lvl7(this, maxx, maxy, arr, imgarr);
+                        break;
 
-                case 8:
-                    maxx = 8;
-                    maxy = 8;
-                    arr = builderoflevels.Lvl8(this, maxx, maxy, arr, imgarr);
-                    break;
+                    case 8:
+                        maxx = 8;
+                        maxy = 8;
+                        arr = builderoflevels.Lvl8(this, maxx, maxy, arr, imgarr);
+                        break;
 
-                case 9:
-                    maxx = 7;
-                    maxy = 9;
-                    arr = builderoflevels.Lvl9(this, maxx, maxy, arr, imgarr);
-                    break;
+                    case 9:
+                        maxx = 7;
+                        maxy = 9;
+                        arr = builderoflevels.Lvl9(this, maxx, maxy, arr, imgarr);
+                        break;
 
-                case 10:
-                    maxx = 8;
-                    maxy = 7;
-                    arr = builderoflevels.Lvl10(this, maxx, maxy, arr, imgarr);
-                    break;
+                    case 10:
+                        maxx = 8;
+                        maxy = 7;
+                        arr = builderoflevels.Lvl10(this, maxx, maxy, arr, imgarr);
+                        break;
 
-                case 0:
-                    try
-                    {
-                        FileStream f = new FileStream("levelsaved.dangame", FileMode.Open);
-                        BinaryReader sr = new BinaryReader(f);
+                    case 0:
+                        try
+                        {
+                            FileStream f = new FileStream("levelsaved.dangame", FileMode.Open);
+                            BinaryReader sr = new BinaryReader(f);
 
-                        maxx = sr.ReadInt32();
-                        maxy = sr.ReadInt32();
+                            maxx = sr.ReadInt32();
+                            maxy = sr.ReadInt32();
 
-                        sr.Close();
-                        f.Close();
-                    }
-                    catch (Exception err)
-                    {
-                        MessageBox.Show(err.Message);
-                    }
+                            sr.Close();
+                            f.Close();
+                        }
+                        catch (Exception err)
+                        {
+                            MessageBox.Show(err.Message);
+                        }
 
-                    arr = builderoflevels.Lvl0(this, maxx, maxy, arr, imgarr);
-                    break;
+                        arr = builderoflevels.Lvl0(this, maxx, maxy, arr, imgarr);
+                        break;
 
+                    default:
+                        break;
+                }
+            }
+            catch (Exception err)
+            {
+                //it an saved game cuz it didnt parse the lavel cuz it have string in its name
+                arr = builderoflevels.Midgamesaved(this, Int32.Parse(whatlevel.Split('.')[0]), maxx, maxy, arr, imgarr);
 
-
-                default:
-                    // Handle the default case if whatlevel doesn't match any of the specified cases
-                    break;
             }
 
             //location the timer and return
@@ -229,11 +248,15 @@ namespace Final_Work
             timerlbl.Location = new Point(this.ClientSize.Width - (timerlbl.Width + 500) / 2, 500);
             timershowlbl.Location = new Point(this.ClientSize.Width - (timerlbl.Width + 500) / 2, 550);
 
-            optionbtn.Location = new Point((this.Width - optionbtn.Width) - 10, 10);
+            closeallbtn.Location = new Point((this.Width - closeallbtn.Width) - 10, 10);
+            optionbtn.Location = new Point((this.Width - optionbtn.Width)- closeallbtn.Width - 10, 10);
 
             undobtn.Location = new Point(20 + undobtn.Width , this.ClientSize.Height / 2 + 50);
             undolbl.Location = new Point(20 + undolbl.Width  , (this.ClientSize.Height / 2 ));
 
+            countstepslbl.Text = stepcounter.ToString();
+            TimeSpan timeSpan = TimeSpan.FromSeconds(elapsedSeconds);
+            timershowlbl.Text = timeSpan.ToString("hh':'mm':'ss");
 
             //save the first position 
             everymove.Push(new undoc(arr, stepOnDot));
@@ -394,11 +417,11 @@ namespace Final_Work
                                 else
                                     stepOnDot = false;
 
-                                
+
 
 
                                 // Move the player
-
+                                FirstMoveOfTheGame=true;
                                 arr[nextX, nextY].Tag = "5";
                                 arr[nextX, nextY].Image = GetPlayerImage(xOffset, yOffset);
                                 havemove=false;
@@ -447,10 +470,10 @@ namespace Final_Work
                                         arr[boxNextX, boxNextY].Image = imgarr[2];
                                     }
 
-                                    
+
 
                                     // Move the player
-
+                                    FirstMoveOfTheGame = true;
                                     arr[nextX, nextY].Tag = "5";
                                     arr[nextX, nextY].Image = GetPlayerImage(xOffset, yOffset);
                                     havemove = false;
@@ -505,6 +528,7 @@ namespace Final_Work
 
 
                                     // Move the player
+                                    FirstMoveOfTheGame = true;
                                     arr[nextX, nextY].Tag = "5";
                                     arr[nextX, nextY].Image = GetPlayerImage(xOffset, yOffset);
                                     havemove = false;
@@ -777,7 +801,7 @@ namespace Final_Work
             
             if (!win)
             {
-                if (stepcounter == 1 )
+                if (FirstMoveOfTheGame)
                 {
                     timer.Start();
                 }
@@ -785,26 +809,58 @@ namespace Final_Work
             else {
                 timer.Stop();
                 MessageBox.Show("you won");
-                Close();
+                if (File.Exists("lvl" + Int32.Parse(whatlevel.Split('.')[0]) + "save.cool"))
+                {
+                    File.Delete("lvl" + Int32.Parse(whatlevel.Split('.')[0]) + "save.cool");
+                }
                 if (!useundo) //didnt used undo so you can save
                 {
-                    Form a = new savescore(stepcounter, timershowlbl.Text, whatlevel, elapsedSeconds);
+                    Form a = new savescore(stepcounter, timershowlbl.Text, Int32.Parse(whatlevel.Split('.')[0]), elapsedSeconds);
                     a.ShowDialog();
                 }
+                Close();
             }
 
         }
-     
 
+        private void save_game() {
+            FileStream f = new FileStream("lvl" + Int32.Parse(whatlevel.Split('.')[0]) + "save.cool", FileMode.Create);
+            BinaryWriter sw = new BinaryWriter(f);
+            sw.Write(maxx);
+            sw.Write(maxy);
+            for (int i = 0; i < maxx; i++)
+            {
+                for (int j = 0; j < maxy; j++)
+                {
+                    sw.Write(arr[i, j].Tag.ToString());
+                }
+            }
+            sw.Write(stepOnDot);
+            sw.Write(boxstepOnDot);
+            sw.Write(stepcounter);
+            sw.Write(elapsedSeconds);
+
+
+            sw.Close();
+            f.Close();
+        }
         private void returnbtn_Click(object sender, EventArgs e)
         {
+            timer.Stop();
+            DialogResult result = MessageBox.Show("do you want to Save the game?", "Return", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                save_game();
+            }
             Close();
+
+
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void againbtn_click(object sender, EventArgs e)
         {
             Close();
-            Form a = new thelevels(whatlevel );
+            Form a = new thelevels(Int32.Parse(whatlevel.Split('.')[0]));
             a.ShowDialog();
         }
 
@@ -834,6 +890,8 @@ namespace Final_Work
             timer.Stop();
             countstepslbl.Visible = false;
             stepslbl.Visible = false;
+            timerlbl.Visible = false;
+            timershowlbl.Visible = false;
 
             undoc currentposition = everymove.Pop();//pop the current move 
             undoc lastposition = everymove.Peek();//take the last move he did
@@ -887,22 +945,77 @@ namespace Final_Work
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void autosolve_Click(object sender, EventArgs e)
         {
+            undobtn.Visible = false;
+            undolbl.Visible = false;
+            stepslbl.Visible = false;
+            countstepslbl.Visible=false;
+            timerlbl.Visible = false;
+            timershowlbl.Visible = false;
+
+
             Agent man = new Agent(arr);
 
-            Target t = new Target(0, new Point(4, 1));
+            bool sol = man.planAction();
+
+            int action = man.getAction();
 
 
-            Dictionary<Point, Box> boxes = new Dictionary<Point, Box>();
-            Point point1 = new Point(2, 3);
-            Box box1 = new Box(0, new Point(2,3), new HashSet<Point>()) ;
-            boxes.Add(point1, box1);
+            if (sol)
+            {
+                
+                while (action != -1)
+                {
+                    patha.Visible = false;
+                    await Task.Run(() =>
+                    {
+                        // Move on a separate thread
+                        if (action == 0) MovePlayer(-1, 0, true);
+                        if (action == 1) MovePlayer(1, 0, true);
+                        if (action == 2) MovePlayer(0, -1, true);
+                        if (action == 3) MovePlayer(0, 1, true);
+                    });
+                    await Task.Delay(100);  // Allow the UI to update
 
 
-            man.evaluateBox(t, boxes,arr);
+                    action =  man.getAction();
+                }
+
+                
+
+
+            }
+            else
+            {
+                patha.Text = "The maze has no solution!";
+                patha.Visible = true;
+            }
+
+            timer.Stop();
+            DialogResult result = MessageBox.Show("that how the computer solves it", "closed", MessageBoxButtons.OK);
+            Close();
+            
+
+
 
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void closeallbtn_Click(object sender, EventArgs e)
+        {
+            timer.Stop();
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes) {
+                save_game();
+                Application.Exit();
+            }
+            else 
+                timer.Start();
+        }
     }
 }

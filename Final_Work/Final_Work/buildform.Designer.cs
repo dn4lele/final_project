@@ -49,9 +49,11 @@
             this.sizeytxt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.changesizebtn = new System.Windows.Forms.Button();
+            this.closeallbtn = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.optionbtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.returnbtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeallbtn)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -182,7 +184,7 @@
             // 
             this.optionbtn.BackColor = System.Drawing.Color.Transparent;
             this.optionbtn.Image = ((System.Drawing.Image)(resources.GetObject("optionbtn.Image")));
-            this.optionbtn.Location = new System.Drawing.Point(840, 12);
+            this.optionbtn.Location = new System.Drawing.Point(801, 0);
             this.optionbtn.Name = "optionbtn";
             this.optionbtn.Size = new System.Drawing.Size(60, 60);
             this.optionbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -255,6 +257,18 @@
             this.changesizebtn.UseVisualStyleBackColor = true;
             this.changesizebtn.Click += new System.EventHandler(this.changesizebtn_Click);
             // 
+            // closeallbtn
+            // 
+            this.closeallbtn.BackColor = System.Drawing.Color.Transparent;
+            this.closeallbtn.Image = ((System.Drawing.Image)(resources.GetObject("closeallbtn.Image")));
+            this.closeallbtn.Location = new System.Drawing.Point(867, 0);
+            this.closeallbtn.Name = "closeallbtn";
+            this.closeallbtn.Size = new System.Drawing.Size(60, 60);
+            this.closeallbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.closeallbtn.TabIndex = 30;
+            this.closeallbtn.TabStop = false;
+            this.closeallbtn.Click += new System.EventHandler(this.closeallbtn_Click);
+            // 
             // buildform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -262,6 +276,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(925, 585);
+            this.Controls.Add(this.closeallbtn);
             this.Controls.Add(this.changesizebtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.sizeytxt);
@@ -276,6 +291,7 @@
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "buildform";
             this.Text = "buildform";
@@ -285,6 +301,7 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.optionbtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.returnbtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeallbtn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,5 +329,6 @@
         private System.Windows.Forms.TextBox sizeytxt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button changesizebtn;
+        private System.Windows.Forms.PictureBox closeallbtn;
     }
 }

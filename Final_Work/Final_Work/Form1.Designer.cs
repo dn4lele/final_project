@@ -63,7 +63,7 @@
             this.titlelbl.AutoSize = true;
             this.titlelbl.BackColor = System.Drawing.Color.Transparent;
             this.titlelbl.Font = new System.Drawing.Font("Microsoft YaHei", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titlelbl.Location = new System.Drawing.Point(355, 79);
+            this.titlelbl.Location = new System.Drawing.Point(184, 22);
             this.titlelbl.Name = "titlelbl";
             this.titlelbl.Size = new System.Drawing.Size(692, 159);
             this.titlelbl.TabIndex = 3;
@@ -85,7 +85,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Magneto", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(25, 501);
+            this.label1.Location = new System.Drawing.Point(27, 558);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(242, 32);
             this.label1.TabIndex = 4;

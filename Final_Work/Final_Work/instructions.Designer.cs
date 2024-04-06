@@ -37,9 +37,11 @@
             this.moveslbl = new System.Windows.Forms.Label();
             this.keyslbl = new System.Windows.Forms.Label();
             this.buttonpic = new System.Windows.Forms.PictureBox();
+            this.closeallbtn = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.returnbtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.optionbtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonpic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeallbtn)).BeginInit();
             this.SuspendLayout();
             // 
             // returnbtn
@@ -58,7 +60,7 @@
             // 
             this.optionbtn.BackColor = System.Drawing.Color.Transparent;
             this.optionbtn.Image = ((System.Drawing.Image)(resources.GetObject("optionbtn.Image")));
-            this.optionbtn.Location = new System.Drawing.Point(931, 15);
+            this.optionbtn.Location = new System.Drawing.Point(952, 9);
             this.optionbtn.Name = "optionbtn";
             this.optionbtn.Size = new System.Drawing.Size(60, 60);
             this.optionbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -106,7 +108,7 @@
             this.moveslbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.moveslbl.Location = new System.Drawing.Point(464, 517);
             this.moveslbl.Name = "moveslbl";
-            this.moveslbl.Size = new System.Drawing.Size(110, 52);
+            this.moveslbl.Size = new System.Drawing.Size(110, 51);
             this.moveslbl.TabIndex = 26;
             this.moveslbl.Text = "1/12";
             // 
@@ -129,6 +131,18 @@
             this.buttonpic.TabIndex = 28;
             this.buttonpic.TabStop = false;
             // 
+            // closeallbtn
+            // 
+            this.closeallbtn.BackColor = System.Drawing.Color.Transparent;
+            this.closeallbtn.Image = ((System.Drawing.Image)(resources.GetObject("closeallbtn.Image")));
+            this.closeallbtn.Location = new System.Drawing.Point(1018, 9);
+            this.closeallbtn.Name = "closeallbtn";
+            this.closeallbtn.Size = new System.Drawing.Size(60, 60);
+            this.closeallbtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.closeallbtn.TabIndex = 29;
+            this.closeallbtn.TabStop = false;
+            this.closeallbtn.Click += new System.EventHandler(this.closeallbtn_Click);
+            // 
             // instructions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -136,6 +150,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1090, 663);
             this.ControlBox = false;
+            this.Controls.Add(this.closeallbtn);
             this.Controls.Add(this.buttonpic);
             this.Controls.Add(this.keyslbl);
             this.Controls.Add(this.moveslbl);
@@ -145,6 +160,7 @@
             this.Controls.Add(this.optionbtn);
             this.Controls.Add(this.returnbtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "instructions";
             this.Text = "instructions";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -152,6 +168,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.returnbtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.optionbtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonpic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeallbtn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,5 +184,6 @@
         private System.Windows.Forms.Label moveslbl;
         private System.Windows.Forms.Label keyslbl;
         private System.Windows.Forms.PictureBox buttonpic;
+        private System.Windows.Forms.PictureBox closeallbtn;
     }
 }

@@ -22,17 +22,20 @@ namespace Final_Work
         {
             InitializeComponent();
 
+
             WindowsMediaPlayer = new WindowsMediaPlayer();
             WindowsMediaPlayer.enabled = true;
             WindowsMediaPlayer.URL = "./sound/bgsound.wav";
             WindowsMediaPlayer.controls.play();
+            
 
-   
         }
 
         private void Exitbtn_Click(object sender, EventArgs e)
         {
-            Close();
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                Application.Exit();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -46,12 +49,9 @@ namespace Final_Work
 
         private void startbtn_Click(object sender, EventArgs e)
         {
-            Form a = new thelevels(2);
-            a.ShowDialog();
-            /*
-            Form a = new second_screen(); // change that to Form a = new second_screen();
-            a.ShowDialog();
-            */
+            Form sec_screen = new second_screen();
+            sec_screen.Show();
+            this.Hide();
         }
 
         private void optionsbtn_Click(object sender, EventArgs e)
