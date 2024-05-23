@@ -30,6 +30,7 @@ namespace Final_Work
         PictureBox[,] arr;
         int maxx = 9;
         int maxy = 9;
+        bool AI_active = false;
 
         //stack of the moves
         Stack<undoc> everymove = new Stack<undoc>();
@@ -767,7 +768,7 @@ namespace Final_Work
         public void playermovement(object sender, KeyEventArgs e)
         {
             
-            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Left || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) {
+            if ((e.KeyCode == Keys.Right || e.KeyCode == Keys.Left || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) && (!AI_active)) {
                 if (e.KeyCode == Keys.Right)
                 {
                     MovePlayer(0, 1, true);
@@ -947,6 +948,7 @@ namespace Final_Work
 
         private async void autosolve_Click(object sender, EventArgs e)
         {
+            AI_active= true;
             undobtn.Visible = false;
             undolbl.Visible = false;
             stepslbl.Visible = false;

@@ -94,8 +94,7 @@ namespace Final_Work
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             Form Build_form = new buildform();
-            Build_form.Show();
-            this.Hide();
+            Build_form.ShowDialog();
         }
 
         private void howtoplaybtn_Click(object sender, EventArgs e)
