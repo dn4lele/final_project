@@ -175,11 +175,13 @@
             // patha
             // 
             this.patha.AutoSize = true;
+            this.patha.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patha.Location = new System.Drawing.Point(251, 127);
             this.patha.Name = "patha";
-            this.patha.Size = new System.Drawing.Size(44, 16);
+            this.patha.Size = new System.Drawing.Size(85, 29);
             this.patha.TabIndex = 27;
             this.patha.Text = "label1";
+            this.patha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.patha.Visible = false;
             // 
             // closeallbtn

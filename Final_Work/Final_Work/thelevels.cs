@@ -154,14 +154,14 @@ namespace Final_Work
                         break;
 
                     case 2:
-                        maxx = 9;
-                        maxy = 9;
+                        maxx = 7;
+                        maxy = 6;
                         arr = builderoflevels.Lvl2(this, maxx, maxy, arr, imgarr);
                         break;
 
                     case 3:
-                        maxx = 9;
-                        maxy = 11;
+                        maxx = 7;
+                        maxy = 6;
                         arr = builderoflevels.Lvl3(this, maxx, maxy, arr, imgarr);
                         break;
 
@@ -178,32 +178,30 @@ namespace Final_Work
                         break;
 
                     case 6:
-                        maxx = 9;
-                        maxy = 8;
+                        maxx = 7;
+                        maxy = 7;
                         arr = builderoflevels.Lvl6(this, maxx, maxy, arr, imgarr);
                         break;
-
-                    //change
                     case 7:
                         maxx = 7;
-                        maxy = 8;
+                        maxy = 7;
                         arr = builderoflevels.Lvl7(this, maxx, maxy, arr, imgarr);
                         break;
 
                     case 8:
-                        maxx = 8;
-                        maxy = 8;
+                        maxx = 7;
+                        maxy =8;
                         arr = builderoflevels.Lvl8(this, maxx, maxy, arr, imgarr);
                         break;
 
                     case 9:
-                        maxx = 7;
-                        maxy = 9;
+                        maxx = 6;
+                        maxy = 6;
                         arr = builderoflevels.Lvl9(this, maxx, maxy, arr, imgarr);
                         break;
 
                     case 10:
-                        maxx = 8;
+                        maxx = 7;
                         maxy = 7;
                         arr = builderoflevels.Lvl10(this, maxx, maxy, arr, imgarr);
                         break;
@@ -254,6 +252,9 @@ namespace Final_Work
 
             undobtn.Location = new Point(20 + undobtn.Width , this.ClientSize.Height / 2 + 50);
             undolbl.Location = new Point(20 + undolbl.Width  , (this.ClientSize.Height / 2 ));
+
+            autosolve.Location = new Point(20 + autosolve.Width, (this.ClientSize.Height / 3) - 100);
+            patha.Location = new Point(120 + autosolve.Width, (this.ClientSize.Height / 3) - 100);
 
             countstepslbl.Text = stepcounter.ToString();
             TimeSpan timeSpan = TimeSpan.FromSeconds(elapsedSeconds);
@@ -948,13 +949,18 @@ namespace Final_Work
 
         private async void autosolve_Click(object sender, EventArgs e)
         {
-            AI_active= true;
+            patha.Text = "Loading....";
+            patha.Visible = true;
+            AI_active = true;
             undobtn.Visible = false;
             undolbl.Visible = false;
             stepslbl.Visible = false;
             countstepslbl.Visible=false;
             timerlbl.Visible = false;
             timershowlbl.Visible = false;
+
+            
+
 
 
             Agent man = new Agent(arr);
@@ -966,10 +972,9 @@ namespace Final_Work
 
             if (sol)
             {
-                
+                patha.Text = "solved";
                 while (action != -1)
                 {
-                    patha.Visible = false;
                     await Task.Run(() =>
                     {
                         // Move on a separate thread
@@ -984,19 +989,19 @@ namespace Final_Work
                     action =  man.getAction();
                 }
 
-                
-
-
+                timer.Stop();
+                DialogResult result = MessageBox.Show("that how the computer solves it", "closed", MessageBoxButtons.OK);
+                Close();
             }
             else
             {
                 patha.Text = "The maze has no solution!";
-                patha.Visible = true;
+                MessageBox.Show("sorry cant solve that", "closed", MessageBoxButtons.OK);
+
+                Close();
             }
 
-            timer.Stop();
-            DialogResult result = MessageBox.Show("that how the computer solves it", "closed", MessageBoxButtons.OK);
-            Close();
+            
             
 
 

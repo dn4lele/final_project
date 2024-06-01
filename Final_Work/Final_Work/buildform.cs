@@ -208,11 +208,27 @@ namespace Final_Work
             return target == box;
         }
 
+        //if there is atlist one box
+        private bool atlistonebox()
+        {
+            bool found = false;
+
+            for (int i = 0; i < maxx; i++)
+            {
+                for (int j = 0; j < maxy; j++)
+                {
+                    if (arr[i, j].Tag.Equals("2"))
+                        found = true;
+                }
+            }
+
+            return found;
+        }
 
         //save the map
         private void savebtn_Click(object sender, EventArgs e)
         {
-            if (boxequaltargets() && thereisplayer())
+            if (boxequaltargets() && thereisplayer() && atlistonebox())
             {
                 //i need to save the maxx , maxy  and every picture tag 
                 //and to solve it i only need an function that translate
@@ -255,8 +271,10 @@ namespace Final_Work
             else {
                 if(!boxequaltargets())
                     MessageBox.Show("for every box must be target");
-                else
+                else if (!thereisplayer())
                     MessageBox.Show("must be an player in the game");
+                else
+                    MessageBox.Show("must be atlist one box in the game");
 
             }
         }
@@ -326,6 +344,16 @@ namespace Final_Work
 
         private void changesizebtn_Click(object sender, EventArgs e)
         {
+            if(Int32.Parse(sizextxt.Text.ToString()) > 10)
+            {
+                MessageBox.Show("The size is to big, the max size is 10x10");
+                sizextxt.Text = "10";
+            }
+            if (Int32.Parse(sizeytxt.Text.ToString()) > 10)
+            {
+                MessageBox.Show("The size is to big, the max size is 10x10");
+                sizeytxt.Text = "10";
+            }
             foreach (PictureBox pb in arr)
             {
                 this.Controls.Remove(pb);

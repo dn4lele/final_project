@@ -154,7 +154,7 @@ namespace Final_Work
             PictureBox pictureBox = sender as PictureBox;
             if (pictureBox != null)
             {
-                pictureBox.Size = new Size(270, 270);
+                pictureBox.Size = new Size(250, 270);
             }
         }
         private void PictureBox_MouseLeave(object sender, EventArgs e)
